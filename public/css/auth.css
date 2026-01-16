@@ -1,0 +1,93 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  background: linear-gradient(180deg, #0a3d62, #0c2461);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+  color: #fff;
+}
+
+/* Auth Card */
+.auth-container {
+  width: 360px;
+  padding: 28px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+/* Title */
+.auth-container h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+/* Inputs */
+.auth-container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 14px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  font-size: 15px;
+  text-align: right;
+}
+
+.auth-container input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.auth-container input:focus {
+  outline: none;
+  border-bottom-color: #1e90ff;
+}
+
+/* Button */
+.auth-container button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 30px;
+  background: #1e90ff;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.auth-container button:hover {
+  background: #1976d2;
+  transform: translateY(-1px);
+}
+
+/* Footer text */
+.auth-container p {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #cfd8dc;
+}
+
+/* Links */
+.auth-container a {
+  color: #90caf9;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-container a:hover {
+  text-decoration: underline;
+}

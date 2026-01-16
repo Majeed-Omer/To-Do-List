@@ -1,0 +1,334 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  background: linear-gradient(180deg, #0a3d62, #0c2461);
+  height: 100vh;
+  color: #fff;
+}
+
+/* Header */
+.app-header {
+  padding: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  background: #0a3d62;
+  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+}
+
+/* Task list area */
+.todo-wrapper {
+  padding: 16px;
+}
+
+/* Task item */
+li {
+  background: rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+li span {
+  font-size: 15px;
+}
+
+li small {
+  display: block;
+  font-size: 12px;
+  opacity: .8;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: #ff6b6b;
+  font-size: 14px;
+}
+
+/* Floating Add Button */
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  font-size: 32px;
+  background: #1e90ff;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,.4);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  color: #333;
+  width: 320px;
+  padding: 20px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.modal-actions button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #1e90ff;
+  color: #fff;
+}
+
+.cancel-btn {
+  background: #6c757d;
+}
+
+
+/* ADD TASK PAGE */
+.add-page {
+  background: linear-gradient(180deg, #0a3d62, #0c2461);
+  color: #fff;
+  height: 100vh;
+}
+
+/* Header */
+.add-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+   justify-content: flex-start; 
+  background: #0a3d62;
+  box-shadow: 0 2px 6px rgba(0,0,0,.4);
+}
+
+.add-header h3 {
+  margin: 0;
+  font-size: 18px;
+  text-align: right;
+}
+
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Content */
+.add-content {
+  padding: 20px;
+}
+
+.add-content label {
+  display: block;
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: .85;
+}
+
+.add-content input {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(255,255,255,.5);
+  color: #fff;
+  font-size: 16px;
+}
+
+.add-content input:focus {
+  outline: none;
+  border-bottom-color: #1e90ff;
+}
+
+/* Bottom Button */
+.save-task-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  background: #4caf50;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.bottom-save-btn:hover {
+  background: #43a047;
+}
+
+.add-task-body {
+  background: linear-gradient(180deg, #0b3c5d, #08304a);
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+.mobile-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  color: #fff;
+  font-size: 18px;
+}
+
+.back-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.add-task-page {
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.field-label {
+  color: #bcd6e6;
+  font-size: 14px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #5fa3c7;
+  margin-bottom: 25px;
+}
+
+.input-row input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 0;
+}
+
+.input-row input::placeholder {
+  color: #9bbcd0;
+}
+
+.input-row input:focus {
+  outline: none;
+}
+
+.bottom-save-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  background: #4caf50;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.bottom-save-btn:hover {
+  background: #43a047;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f5f6fa;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.task-title {
+  font-size: 16px;
+  cursor: pointer;
+  flex: 1;
+  color: black;
+}
+
+.task-complete-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: black;
+}
+
+.complete-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.complete-label {
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.task-text-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.task-datetime {
+  font-size: 12px;
+  color: #888;
+}
+
+.task-item {
+  cursor: pointer;
+}
+.complete-checkbox {
+  cursor: default;
+}
