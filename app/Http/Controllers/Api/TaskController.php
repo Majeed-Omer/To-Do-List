@@ -10,7 +10,11 @@ class TaskController extends Controller
     // Get all tasks for logged-in user
     public function index()
     {
-        return auth()->user()->tasks()->orderBy('id', 'desc')->get();
+        return auth()->user()->tasks()->orderBy('created_at', 'desc')->get([
+            'id',
+            'title',
+            'due_at',
+        ]);
     }
 
     // Store new task for logged-in user
@@ -28,15 +32,16 @@ class TaskController extends Controller
     }
 
     // Toggle completed (no need for manual user check)
-    public function update(Request $request, $id)
-    {
+   public function update(Request $request, $id)
+{
     $request->validate([
         'title' => 'required|string',
         'due_at' => 'nullable|date',
     ]);
 
-    $task = Task::where('id', $id)
-        ->where('user_id', auth()->id())
+    $task = auth()->user()
+        ->tasks()
+        ->where('id', $id)
         ->firstOrFail();
 
     $task->update([
@@ -45,18 +50,22 @@ class TaskController extends Controller
     ]);
 
     return response()->json([
-        'message' => 'Task updated successfully',
-        'task' => $task
+        'success' => true,
+        'task' => $task,
     ]);
-    }
+}
+
 
     public function destroy($id)
-    {
+{
     $task = auth()->user()->tasks()->findOrFail($id);
-    $task->delete();
+    $task->delete(); // PERMANENT delete
 
-    return response()->json(['message' => 'Deleted']);
-    }
+    return response()->json([
+        'message' => 'Task permanently deleted'
+    ], 200);
+}
+
 
     public function show($id)
     {

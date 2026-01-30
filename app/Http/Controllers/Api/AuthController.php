@@ -9,59 +9,77 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    // =====================
+    // REGISTER
+    // =====================
     public function register(Request $request)
-{
-    $request->validate([
-        'name' => 'required|string',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:6',
-    ]);
+    {
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+        ]);
 
-    $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-    ]);
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => strtolower($data['email']),
+            'password' => Hash::make($data['password']),
+        ]);
 
-    $token = $user->createToken('auth_token')->plainTextToken;
+        $token = $user->createToken('mobile')->plainTextToken;
 
-    return response()->json([
-        'token' => $token
-    ]);
-}
-
-public function login(Request $request)
-{
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
-
-    $user = User::where('email', $request->email)->first();
-
-    if (!$user) {
-        return response()->json(['message' => 'User not found'], 401);
+        return response()->json([
+            'token' => $token
+        ], 200);
     }
 
-    if (!Hash::check($request->password, $user->password)) {
-        return response()->json(['message' => 'Wrong password'], 401);
+    // =====================
+    // LOGIN
+    // =====================
+    public function login(Request $request)
+    {
+        $data = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $user = User::where('email', strtolower($data['email']))->first();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'User not found'
+            ], 401);
+        }
+
+        if (!Hash::check($data['password'], $user->password)) {
+            return response()->json([
+                'message' => 'Wrong password'
+            ], 401);
+        }
+
+        // Optional: remove old tokens
+        $user->tokens()->delete();
+
+        $token = $user->createToken('mobile')->plainTextToken;
+
+        return response()->json([
+            'token' => $token,
+            'user' => [
+                'name' => $user->name,
+                'email' => $user->email,
+            ]
+        ], 200);
     }
 
-    $token = $user->createToken('auth_token')->plainTextToken;
-
-    return response()->json([
-        'token' => $token,
-        'user' => [
-            'name' => $user->name,
-            'email' => $user->email,
-        ]
-    ]);
-}
-
+    // =====================
     // LOGOUT
+    // =====================
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
-        return response()->json(['message' => 'Logged out']);
+
+        return response()->json([
+            'message' => 'Logged out'
+        ]);
     }
 }
